@@ -1,0 +1,43 @@
+#table{
+  position: relative;
+  top: 10px;
+  height: 500px;
+  width: 80%;
+  background-color: green;
+  padding: 20px;
+  margin: auto;
+  border-radius: 40px;
+}
+
+#dealer-hand,
+#player-hand {
+  height: 150px;
+  width: 100%;
+  background-color: lightgreen;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 15px;
+}
+
+.buttons {
+    text-align: center;
+}
+
+#dealer-hand img {
+    padding: 10px;
+    height: 130px;
+
+}
+
+#player-hand img {
+    padding: 10px;
+    height: 130px;
+}
+
+#dealer-points {
+    font-size: 15px;
+}
+
+#player-points {
+    font-size: 15px;
+}
