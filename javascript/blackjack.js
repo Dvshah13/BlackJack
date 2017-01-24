@@ -103,15 +103,17 @@ function clearBoard() {
 }
 
 function gameOver() {
-    document.getElementById('hit-button').style.visibility='hidden';
-    document.getElementById('stand-button').style.visibility='hidden';
-    document.getElementById('bet-button').style.visibility='hidden';
+    $("#deal-button").prop("disabled", false);
+    $("#hit-button").prop("disabled", true);
+    $("#stand-button").prop("disabled", true);
+    $("#bet-button").prop("disabled", true);
 }
 
 function startGame() {
-    document.getElementById('hit-button').style.visibility='visible';
-    document.getElementById('stand-button').style.visibility='visible';
-    document.getElementById('bet-button').style.visibility='visible';
+    $("#deal-button").prop("disabled", true);
+    $("#hit-button").prop("disabled", false);
+    $("#stand-button").prop("disabled", false);
+    $("#bet-button").prop("disabled", true);
     document.getElementById('bet1').style.visibility='hidden';
     document.getElementById('bet5').style.visibility='hidden';
     document.getElementById('bet10').style.visibility='hidden';
@@ -161,11 +163,11 @@ function hit() {
     $('#player-hand').empty();
     $('#player-points').empty();
     $('#dealer-points').empty();
+    $("#bet-button").prop("disabled", true);
     myDeck.draw(playerHand);
     playerHand.cards.forEach(function(card){
         $('#player-hand').append('<img src="'+card.getImageUrl()+'" />');
 });
-
 dealerPoints = dealerHand.getPoints();
 playerPoints = playerHand.getPoints();
 $('#player-points').append(playerPoints);
@@ -219,10 +221,21 @@ function bet() {
     document.getElementById('bet10').style.visibility='visible';
     document.getElementById('bet25').style.visibility='visible';
     document.getElementById('betAll').style.visibility='visible';
+    $('#wallet').html('<h5>Money</h5>');
+    $('#betAmount').html('<h5>Bet Amount</h5>');
 }
 
 
 $("document").ready(function() {
+    document.getElementById('bet1').style.visibility='hidden';
+    document.getElementById('bet5').style.visibility='hidden';
+    document.getElementById('bet10').style.visibility='hidden';
+    document.getElementById('bet25').style.visibility='hidden';
+    document.getElementById('betAll').style.visibility='hidden';
+    $("#deal-button").prop("disabled", false);
+    $("#hit-button").prop("disabled", true);
+    $("#stand-button").prop("disabled", true);
+    $("#bet-button").prop("disabled", false);
 
 $("#deal-button").click(function() {
     startGame();
