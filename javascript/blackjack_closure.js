@@ -1,7 +1,4 @@
 function Card(point,suit) {
-    var point = point;
-    var suit = suit;
-
     function getImageUrl() {
         var str = point;
         switch(point) {
@@ -80,26 +77,21 @@ function Deck() {
      return Deck();
 };
 
-
-var playerHand = new Hand();
-var dealerHand = new Hand();
-var hiddenHand = new Hand();
-myDeck = new Deck();
 var playerWin = 0;
 var dealerWin = 0;
 var draw = 0;
 var money = 500;
 var currentBet = 0;
 
-function clearBoard() {
-    $('#dealer-hand').empty();
-    $('#player-hand').empty();
-    playerHand.cards=[];
-    dealerHand.cards=[];
-    hiddenHand.cards=[];
-    $('#player-points').empty();
-    $('#dealer-points').empty();
-}
+// function clearBoard() {
+//     $('#dealer-hand').empty();
+//     $('#player-hand').empty();
+//     playerHand.cards=[];
+//     dealerHand.cards=[];
+//     hiddenHand.cards=[];
+//     $('#player-points').empty();
+//     $('#dealer-points').empty();
+// }
 
 function gameOver() {
     document.getElementById('hit-button').style.visibility='hidden';
@@ -108,6 +100,10 @@ function gameOver() {
 }
 
 function startGame() {
+    var playerHand = new Hand();
+    var dealerHand = new Hand();
+    var hiddenHand = new Hand();
+    myDeck = new Deck();
     document.getElementById('hit-button').style.visibility='visible';
     document.getElementById('stand-button').style.visibility='visible';
     document.getElementById('bet-button').style.visibility='visible';
@@ -117,7 +113,15 @@ function startGame() {
     document.getElementById('bet25').style.visibility='hidden';
     document.getElementById('betAll').style.visibility='hidden';
     //clear the board
-    clearBoard();
+    function clearBoard() {
+        $('#dealer-hand').empty();
+        $('#player-hand').empty();
+        playerHand.cards=[];
+        dealerHand.cards=[];
+        hiddenHand.cards=[];
+        $('#player-points').empty();
+        $('#dealer-points').empty();
+    }
     //count the deck
 if (myDeck.numCardsLeft !== 52) {
     myDeck = new Deck();
@@ -154,8 +158,6 @@ else if (dealerPoints == 21) {
     $('#player-points').html('<h3>"Dealer had BLACKJACK, You LOSE!"</h3>');
     gameOver();
 }
-}
-
 function hit() {
     $('#player-hand').empty();
     $('#player-points').empty();
@@ -177,7 +179,6 @@ if (playerPoints > 21) {
     // alert("Please Play Again");
 }
 }
-
 function stand() {
     $('#dealer-hand').empty();
     $('#player-points').empty();
@@ -212,6 +213,9 @@ function stand() {
     }
 }
 
+return startGame();
+}
+
 function bet() {
     document.getElementById('bet1').style.visibility='visible';
     document.getElementById('bet5').style.visibility='visible';
@@ -221,10 +225,13 @@ function bet() {
 }
 
 
+
+
 $("document").ready(function() {
 
 $("#deal-button").click(function() {
     startGame();
+    clearBoard();
 });
 
 $("#hit-button").click(function() {
