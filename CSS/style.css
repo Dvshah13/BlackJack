@@ -41,3 +41,11 @@
 #player-points {
     font-size: 15px;
 }
+
+.betButton {
+    text-align: center;
+}
+
+#placeBets tr {
+    text-align: left;
+}

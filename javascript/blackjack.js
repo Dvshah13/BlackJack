@@ -85,6 +85,11 @@ Deck.prototype.numCardsLeft = function() {
 var playerHand = new Hand();
 var dealerHand = new Hand();
 myDeck = new Deck();
+var playerWin = 0;
+var dealerWin = 0;
+var draw = 0;
+var money = 500;
+var currentBet = 0;
 
 function clearBoard() {
     $('#dealer-hand').empty();
@@ -95,7 +100,21 @@ function clearBoard() {
     $('#dealer-points').empty();
 }
 
+function gameOver() {
+    document.getElementById('hit-button').style.visibility='hidden';
+    document.getElementById('stand-button').style.visibility='hidden';
+    document.getElementById('bet-button').style.visibility='hidden';
+}
+
 function startGame() {
+    document.getElementById('hit-button').style.visibility='visible';
+    document.getElementById('stand-button').style.visibility='visible';
+    document.getElementById('bet-button').style.visibility='visible';
+    document.getElementById('bet1').style.visibility='hidden';
+    document.getElementById('bet5').style.visibility='hidden';
+    document.getElementById('bet10').style.visibility='hidden';
+    document.getElementById('bet25').style.visibility='hidden';
+    document.getElementById('betAll').style.visibility='hidden';
     //clear the board
     clearBoard();
     //count the deck
@@ -126,9 +145,11 @@ $('#player-points').append(playerPoints);
 $('#dealer-points').append(dealerPoints);
 if (playerPoints == 21 && dealerPoints !== 21) {
     $('#player-points').html("BLACKJACK, You WIN!");
+    gameOver();
 }
 else if (dealerPoints == 21) {
     $('#player-points').html("Dealer had BLACKJACK, You LOSE!");
+    gameOver();
 }
 }
 
@@ -140,12 +161,15 @@ function hit() {
     playerHand.cards.forEach(function(card){
         $('#player-hand').append('<img src="'+card.getImageUrl()+'" />');
 });
+
 dealerPoints = dealerHand.getPoints();
 playerPoints = playerHand.getPoints();
 $('#player-points').append(playerPoints);
 $('#dealer-points').append(dealerPoints);
 if (playerPoints > 21) {
     $('#player-points').html("BUST, You LOSE!");
+    gameOver();
+
 
     // alert("Please Play Again");
 }
@@ -173,13 +197,24 @@ function stand() {
 }
     if (dealerPoints > 21 || dealerPoints < playerPoints) {
         $('#player-points').html("Yay, You WIN!");
+        gameOver();
     }
     else if(dealerPoints > playerPoints) {
         $('#player-points').html("Sorry, You Lose, Dealer Wins!");
+        gameOver();
     }
     else {
         $('#player-points').html("You Draw!");
+        gameOver();
     }
+}
+
+function bet() {
+    document.getElementById('bet1').style.visibility='visible';
+    document.getElementById('bet5').style.visibility='visible';
+    document.getElementById('bet10').style.visibility='visible';
+    document.getElementById('bet25').style.visibility='visible';
+    document.getElementById('betAll').style.visibility='visible';
 }
 
 
@@ -195,5 +230,8 @@ $("#hit-button").click(function() {
 
 $("#stand-button").click(function() {
     stand();
+});
+$("#bet-button").click(function() {
+    bet();
 });
 });
