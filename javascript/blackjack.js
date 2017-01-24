@@ -84,6 +84,7 @@ Deck.prototype.numCardsLeft = function() {
 
 var playerHand = new Hand();
 var dealerHand = new Hand();
+var hiddenHand = new Hand();
 myDeck = new Deck();
 var playerWin = 0;
 var dealerWin = 0;
@@ -96,6 +97,7 @@ function clearBoard() {
     $('#player-hand').empty();
     playerHand.cards=[];
     dealerHand.cards=[];
+    hiddenHand.cards=[];
     $('#player-points').empty();
     $('#dealer-points').empty();
 }
@@ -127,7 +129,7 @@ if (myDeck.numCardsLeft !== 52) {
     myDeck.draw(playerHand);
     myDeck.draw(playerHand);
     myDeck.draw(dealerHand);
-    myDeck.draw(dealerHand);
+    myDeck.draw(hiddenHand);
 
 dealerHand.cards.forEach(function(card){
     $('#dealer-hand').append('<img src="'+card.getImageUrl()+'" />');
@@ -135,9 +137,11 @@ dealerHand.cards.forEach(function(card){
 
 playerHand.cards.forEach(function(card){
     $('#player-hand').append('<img src="'+card.getImageUrl()+'" />');
-
-
 });
+hiddenHand.cards.forEach(function(card){
+    $('#dealer-hand').append('<img src="images/back.jpg" />');
+});
+
 dealerPoints = dealerHand.getPoints();
 playerPoints = playerHand.getPoints();
 
