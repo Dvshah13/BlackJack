@@ -144,11 +144,11 @@ playerPoints = playerHand.getPoints();
 $('#player-points').append(playerPoints);
 $('#dealer-points').append(dealerPoints);
 if (playerPoints == 21 && dealerPoints !== 21) {
-    $('#player-points').html("BLACKJACK, You WIN!");
+    $('#player-points').html('<h3>"BLACKJACK, You WIN!"</h3>');
     gameOver();
 }
 else if (dealerPoints == 21) {
-    $('#player-points').html("Dealer had BLACKJACK, You LOSE!");
+    $('#player-points').html('<h3>"Dealer had BLACKJACK, You LOSE!"</h3>');
     gameOver();
 }
 }
@@ -167,7 +167,7 @@ playerPoints = playerHand.getPoints();
 $('#player-points').append(playerPoints);
 $('#dealer-points').append(dealerPoints);
 if (playerPoints > 21) {
-    $('#player-points').html("BUST, You LOSE!");
+    $('#player-points').html('<h3>"BUST, You LOSE!"</h3>');
     gameOver();
 
 
@@ -196,15 +196,15 @@ function stand() {
     })
 }
     if (dealerPoints > 21 || dealerPoints < playerPoints) {
-        $('#player-points').html("Yay, You WIN!");
+        $('#player-points').html('<h3>"Yay, You WIN!"</h3>');
         gameOver();
     }
     else if(dealerPoints > playerPoints) {
-        $('#player-points').html("Sorry, You Lose, Dealer Wins!");
+        $('#player-points').html('<h3>"Sorry, You Lose, Dealer Wins!"</h3>');
         gameOver();
     }
     else {
-        $('#player-points').html("You Draw!");
+        $('#player-points').html('<h3>"You Draw!"</h3>');
         gameOver();
     }
 }
