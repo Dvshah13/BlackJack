@@ -22,7 +22,6 @@ function Card(point,suit) {
     return Card();
 };
 
-
 function Hand() {
     var cards = [];
     var numAces = 0;
